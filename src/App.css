@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #485563;
+  background: -webkit-linear-gradient(to right, #29323c, #485563);
+  background: linear-gradient(to right, #29323c, #485563);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: rgb(255, 255, 255);
+  display: flex;
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weatherBox {
+  background: -webkit-linear-gradient(to right, #243b55, #141e30);
+  background: linear-gradient(to right, #243b55, #141e30);
+  border: 5px solid #608094;
+  padding: 2rem 3rem;
+}
+
+.cityName > p {
+  position: relative;
+}
+
+.cityName > p img {
+  width: 20px;
+  position: absolute;
+}
+
+.invalid {
+  color: #ff4b4b;
+  margin-top: 1rem;
+}
+
+.translater{
+  cursor: pointer;
+  background-color: #dfdfdfe1;
+  font-size: 1.4rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 10px;
+  color: #17384c;
+  width: 10%;
+}
