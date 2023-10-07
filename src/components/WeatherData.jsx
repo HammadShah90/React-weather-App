@@ -8,7 +8,7 @@ const WeatherData = ({
   cityWindData,
   imgSvg,
 }) => {
-  // console.log(imgSvg);
+  console.log(imgSvg);
 
   const currentTime = (time) => {
     return `${new Date(time * 1000).getHours()} : ${new Date(

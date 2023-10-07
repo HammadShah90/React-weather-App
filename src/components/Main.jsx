@@ -3,6 +3,7 @@ import linkIcon from "../assets/external-link.svg";
 import searchIcon from "../assets/search.svg";
 import WeatherData from "./WeatherData";
 import React from "react";
+import DOMPurify from "dompurify";
 
 const Main = () => {
   const inputvalue = useRef(null);
@@ -31,7 +32,8 @@ const Main = () => {
           setMainData(data.list[0].main);
           setWindData(data.list[0].wind);
           setWeatherData(data.list[0].weather[0]);
-          setImgSrc(data.list[0].weather[0].icon);
+          const sanitizedSvg = DOMPurify.sanitize(data.list[0].weather[0].icon);
+          setImgSrc(sanitizedSvg);
           setError(true);
         } else {
           setError(false);
