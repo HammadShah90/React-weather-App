@@ -1,4 +1,7 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React from "react";
+// import img1 from "../assets/01d.svg"
 
 const WeatherData = ({
   cityMainData,
@@ -31,7 +34,7 @@ const WeatherData = ({
       <div className="currentTemp">
         <div className="tempAndLogo">
           <div>
-            {imgSvg && <img src={`../assets/${imgSvg}.svg`} alt="icon" width={200}/>}
+            {imgSvg && <img src={`../images/${cityWeatherdata?.icon}.svg`} alt="icon" width={200}/>}
           </div>
           <div>
             {Math.round(cityMainData.temp)}&deg;C
