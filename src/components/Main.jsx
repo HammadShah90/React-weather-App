@@ -1,9 +1,9 @@
 import { useRef, useEffect, useState } from "react";
-import linkIcon from "../assets/external-link.svg";
-import searchIcon from "../assets/search.svg";
+import linkIcon from "../../public/images/external-link.svg"
+import searchIcon from "../../public/images/search.svg"
 import WeatherData from "./WeatherData";
 import React from "react";
-import DOMPurify from "dompurify";
+
 
 const Main = () => {
   const inputvalue = useRef(null);
@@ -15,7 +15,6 @@ const Main = () => {
   const [mainData, setMainData] = useState([]);
   const [cityDetails, setCityDetails] = useState([]);
   const [windData, setWindData] = useState([]);
-  const [imgSrc, setImgSrc] = useState(null);
   const APP_KEY = "5bcd16ffdbb74ee8a1ef8ea7d751016c";
 
   useEffect(() => {
@@ -32,8 +31,6 @@ const Main = () => {
           setMainData(data.list[0].main);
           setWindData(data.list[0].wind);
           setWeatherData(data.list[0].weather[0]);
-          const sanitizedSvg = DOMPurify.sanitize(data.list[0].weather[0].icon);
-          setImgSrc(sanitizedSvg);
           setError(true);
         } else {
           setError(false);
@@ -101,7 +98,6 @@ const Main = () => {
         city={cityDetails}
         language={lang}
         cityWindData={windData}
-        imgSvg={imgSrc}
       />
     </div>
   );
