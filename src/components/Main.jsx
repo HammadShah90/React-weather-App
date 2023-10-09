@@ -65,7 +65,7 @@ const Main = () => {
             {cityDetails.name}, {cityDetails.country}
             <a
               href={`https://en.wikipedia.org/wiki/${cityDetails.name}`}
-              target="_blank"
+              target="_blank" rel="noreferrer"
             >
               <img src={linkIcon} alt="link" />
             </a>
