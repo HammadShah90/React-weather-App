@@ -1,19 +1,16 @@
 import { useRef, useEffect, useState } from "react";
-import linkIcon from "../../public/images/external-link.svg"
-import searchIcon from "../../public/images/search.svg"
+import linkIcon from "../../public/images/external-link.svg";
+import searchIcon from "../../public/images/search.svg";
 import WeatherData from "./WeatherData";
-import React from "react";
-
 
 const Main = () => {
   const inputvalue = useRef(null);
   const [cityName, setCityName] = useState("karachi");
+  const [cityDetails, setCityDetails] = useState([]);
   const [weatherData, setWeatherData] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(true);
   const [lang, setLang] = useState("en");
   const [mainData, setMainData] = useState([]);
-  const [cityDetails, setCityDetails] = useState([]);
   const [windData, setWindData] = useState([]);
   const APP_KEY = "5bcd16ffdbb74ee8a1ef8ea7d751016c";
 
@@ -21,23 +18,21 @@ const Main = () => {
     async function weather() {
       try {
         const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${APP_KEY}&units=metric&lang=${
+          `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APP_KEY}&units=metric&lang=${
             lang ? "en" : "ur"
           }`
         );
         const data = await response.json();
         if (response.ok) {
-          setCityDetails(data.city);
-          setMainData(data.list[0].main);
-          setWindData(data.list[0].wind);
-          setWeatherData(data.list[0].weather[0]);
+          setCityName(data.name);
+          setCityDetails(data.sys);
+          setMainData(data.main);
+          setWindData(data.wind);
+          setWeatherData(data.weather[0]);
           setError(true);
         } else {
           setError(false);
         }
-  
-        console.log(data);
-        
       } catch (error) {
         console.log(error);
       }
@@ -49,6 +44,7 @@ const Main = () => {
     if (e.key === "Enter") {
       e.preventDefault();
       setCityName(e.target.value);
+      inputvalue.current.value = "";
     }
   };
 
@@ -58,22 +54,27 @@ const Main = () => {
   };
 
   return (
-    <div className="flex flex-col justify-around items-center text-center bg-sky-950 rounded-xl relative w-4/5 h-3/5 weatherBox	">
-      <div className="flex text-2xl font-bold items-center justify-between w-full cityName">
-        {error ? (
-          <p className="flex">
-            {cityDetails.name}, {cityDetails.country}
-            <a
-              href={`https://en.wikipedia.org/wiki/${cityDetails.name}`}
-              target="_blank" rel="noreferrer"
-            >
-              <img src={linkIcon} alt="link" />
-            </a>
-          </p>
-        ) : (
-          <p className="invalid">{lang ? "City Not Found" : "شہر نہیں ملا"}</p>
-        )}
-        <div className="flex items-center justify-between bg-white w-80 rounded-3xl px-3 search">
+    <div className="weatherBox">
+      <div className="d-flex justify-content-between align-items-center cityName">
+        <div>
+          {error ? (
+            <p className="d-flex">
+              {cityName}, {cityDetails.country}
+              <a
+                href={`https://en.wikipedia.org/wiki/${cityName}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img src={linkIcon} alt="link" />
+              </a>
+            </p>
+          ) : (
+            <p className="invalid">
+              {lang ? "City Not Found" : "شہر نہیں ملا"}
+            </p>
+          )}
+        </div>
+        <div className="search">
           <input
             type="text"
             ref={inputvalue}
