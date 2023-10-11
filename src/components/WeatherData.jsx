@@ -1,4 +1,3 @@
-
 const WeatherData = ({
   cityMainData,
   cityWeatherdata,
@@ -6,8 +5,6 @@ const WeatherData = ({
   language,
   cityWindData,
 }) => {
-
-
   const currentTime = (time) => {
     return `${new Date(time * 1000).getHours()} : ${new Date(
       time * 1000
@@ -37,56 +34,92 @@ const WeatherData = ({
               />
             )}
           </div>
-          <div>
-            {Math.round(cityMainData.temp)}&deg;C
-            <p>{cityWeatherdata.description}</p>
+          <div className="fs-1 fw-bold">
+            <h1 className="fw-bold">{Math.round(cityMainData.temp)}&deg;C</h1>
+            <h2 className="mb-2  fw-bold">{cityWeatherdata.description}</h2>
           </div>
         </div>
         <div className="windData">
           <p className="d-flex">
-            {language ? "Wind :" : "ہوا:"}
+            {language ? "Wind : " : "ہوا:"}
             <span className="mx-2">{cityWindData.speed}&nbsp;mph</span>
           </p>
           <p className="d-flex">
-            {language ? "Min Temp:" : "کم سے کم درجہ حرارت:"}
-            <span>{Math.round(cityMainData.temp_min)}&deg;C</span>
+            {language ? "Min Temp : " : "کم سے کم درجہ حرارت:"}
+            <span className="mx-2">{Math.round(cityMainData.temp_min)}&deg;C</span>
           </p>
           <p className="d-flex">
-            {language ? "Max Temp:" : "زیادہ سے زیادہ درجہ حرارت:"}
-            <span>{Math.round(cityMainData.temp_max)}&deg;C</span>
+            {language ? "Max Temp : " : "زیادہ سے زیادہ درجہ حرارت:"}
+            <span className="mx-2">{Math.round(cityMainData.temp_max)}&deg;C</span>
           </p>
         </div>
       </div>
       <div id="scrolledItem" className="forcastdata">
         <div>
           <p>{language ? "SUNRISE" : "طلوع آفتاب"}</p>
-          <img src={'https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/sunrise.svg'} width={100} alt="Sunrise Icon" />
+          <img
+            src={
+              "https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/sunrise.svg"
+            }
+            width={100}
+            alt="Sunrise Icon"
+          />
           <p>{currentTime(city.sunrise)}</p>
         </div>
         <div>
           <p>{language ? "HUMIDITY" : "نمی"}</p>
-          <img src={'https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/humidity.svg'} width={100} alt="Sunrise Icon" />
+          <img
+            src={
+              "https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/humidity.svg"
+            }
+            width={100}
+            alt="Sunrise Icon"
+          />
           <p>{cityMainData.humidity}&nbsp;mm</p>
         </div>
         <div>
           <p>{language ? "WIND" : "ہوا"}</p>
-          <img src={'https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/wind.svg'} width={100} alt="Sunrise Icon" />
+          <img
+            src={"https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/wind.svg"}
+            width={100}
+            alt="Sunrise Icon"
+          />
           <p>{cityWindData.speed}&nbsp;mph</p>
         </div>
         <div>
           <p>{language ? "PRESSURE" : "دباؤ"}</p>
-          <img src={'https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/pressure-low.svg'} width={100} alt="Sunrise Icon" />
+          <img
+            src={
+              "https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/pressure-low.svg"
+            }
+            width={100}
+            alt="Sunrise Icon"
+          />
           <p>{cityMainData.pressure}&nbsp;mb</p>
         </div>
         <div>
           <p>{language ? "SUNSET" : "غروب آفتاب"}</p>
-          <img src={'https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/sunset.svg'} width={100} alt="Sunrise Icon" />
+          <img
+            src={
+              "https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/sunset.svg"
+            }
+            width={100}
+            alt="Sunrise Icon"
+          />
           <p>{currentTime(city.sunset)}</p>
         </div>
       </div>
       <p className="copyRightText text-white">&copy; Muhammad Hammad 2023</p>
-      <p onClick={sideRight} style={{ cursor: "pointer" }} className="rightArrow">&gt;</p>
-      <p onClick={sideLeft} style={{ cursor: "pointer" }} className="leftArrow">&lt;</p>
+      <p
+        onClick={sideRight}
+        style={{ cursor: "pointer" }}
+        className="rightArrow"
+      >
+        &gt;
+      </p>
+      <p onClick={sideLeft} style={{ cursor: "pointer" }} className="leftArrow">
+        &lt;
+      </p>
     </div>
   );
 };

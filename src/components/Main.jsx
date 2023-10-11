@@ -43,14 +43,21 @@ const Main = () => {
   const onKeyPressHandler = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      setCityName(e.target.value);
+      let value =
+        e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
+      setCityName(value);
       inputvalue.current.value = "";
     }
   };
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    setCityName(e.target.value);
+    // console.log(inputvalue.current.value.charAt(0).toUpperCase() + inputvalue.current.value.slice(1));
+    let value =
+      inputvalue.current.value.charAt(0).toUpperCase() +
+      inputvalue.current.value.slice(1);
+    setCityName(value);
+    inputvalue.current.value = "";
   };
 
   return (
@@ -58,14 +65,19 @@ const Main = () => {
       <div className="d-flex justify-content-between align-items-center cityName">
         <div>
           {error ? (
-            <p className="d-flex">
+            <p className="d-flex position-relative fs-1 mb-2">
               {cityName}, {cityDetails.country}
               <a
                 href={`https://en.wikipedia.org/wiki/${cityName}`}
                 target="_blank"
                 rel="noreferrer"
               >
-                <img src={linkIcon} alt="link" />
+                <img
+                  src={linkIcon}
+                  alt="link"
+                  width={26}
+                  className="position-absolute"
+                />
               </a>
             </p>
           ) : (
@@ -80,7 +92,6 @@ const Main = () => {
             ref={inputvalue}
             onKeyDown={onKeyPressHandler}
             placeholder="City Name"
-            className="bg-transparent outline-none border-none w-11/12 px-3 py-3 text-xl text-cyan-900"
           />
           <img
             style={{ cursor: "pointer", paddingRight: 10 }}
@@ -89,7 +100,7 @@ const Main = () => {
             alt="searchIcon"
           />
         </div>
-        <p onClick={() => setLang(!lang)} className="translater">
+        <p onClick={() => setLang(!lang)} className="translater mb-2">
           {lang ? "Urdu" : "Eng"}
         </p>
       </div>
