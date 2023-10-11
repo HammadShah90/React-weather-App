@@ -196,7 +196,7 @@ input {
     justify-content: center;
   }
   .weatherBox {
-    padding: 1rem 0.8rem;
+    padding: 0.5rem 0.7rem;
   }
   .weatherData {
     align-items: center;
